@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import NavbarMain from "./components/Navbar";
+import { ThemeProvider } from "./components/theme-provider";
+import ModeToggle from "./components/theme-toggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,23 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <NavbarMain/>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <div className="
+              fixed
+              left-5
+              top-5
+
+            ">
+            <ModeToggle />
+          </div>
+          </ThemeProvider>
       </body>
     </html>
   );
